@@ -1,0 +1,37 @@
+@model List<Order>
+
+@{
+    ViewBag.Title = "All Orders";
+}
+
+<h2>All Orders</h2>
+@if (Model != null && Model.Count != 0)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Contact Phone</th>
+            <th scope="col">Phone's names</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <th scope="row">@p.Name</th>
+                <td>@p.Name</td>
+                <td>@p.Address</td>
+                <td>@p.ContactPhone</td>
+                <td>@p.Phone.Name</td>
+                @* <td><a asp-action="Create" asp-controller="Order" asp-route-id="@p.Id">Make Order</a></td> *@
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>Нету заказов пока!</h3>
+}
