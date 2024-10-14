@@ -54,7 +54,23 @@ public class PhoneController : Controller
         else
             return NotFound();
     }
+    
+    //task3
+    public IActionResult Edit(int id)
+    {
+        Phone p = _context.Phones.FirstOrDefault(x => x.Id == id);
+        return View(p);
+    }
 
+    [HttpPost]
+    public IActionResult Edit(Phone phone)
+    {
+        _context.Update(phone);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+    }
+    //-------------------------------------------
+    
     [HttpPost]
     public IActionResult Create(Phone phone)
     {
