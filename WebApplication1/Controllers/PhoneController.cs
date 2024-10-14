@@ -40,6 +40,20 @@ public class PhoneController : Controller
             return NotFound($"{phoneName} такой файл не найдено!");
         }
     }
+    
+    //task2
+    public IActionResult Test(string company)
+    {
+        Phone phones = _context.Phones.FirstOrDefault(x => x.Company == company);
+        if (phones.Company == "Apple")
+            return RedirectPermanent("https://www.apple.com/");
+        else if (phones.Company == "Samsung")
+            return RedirectPermanent("https://www.samsung.com/ru/");
+        else if (phones.Company == "MI")
+            return RedirectPermanent("https://www.mi.com/ru/");
+        else
+            return NotFound();
+    }
 
     [HttpPost]
     public IActionResult Create(Phone phone)

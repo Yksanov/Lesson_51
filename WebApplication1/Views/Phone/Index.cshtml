@@ -28,6 +28,7 @@
             <td>@p.CameraCount</td>
             <td><a asp-action="Details" asp-route-id="@p.Id">Details</a></td>
             <td><a asp-action="Create" asp-controller="Order" asp-route-id="@p.Id">Make Order</a></td>
+            <td><a asp-action="Test" asp-controller="Phone" asp-route-company="@p.Company"><button class="btn btn-primary">Redirects</button></a></td>
         </tr>
     }
     </tbody>

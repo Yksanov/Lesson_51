@@ -126,3 +126,4 @@ D:\Attractor\month#2\WebApplication1\Webapplication1\bin\Debug\net8.0\runtimes\w
 D:\Attractor\month#2\WebApplication1\Webapplication1\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 D:\Attractor\month#2\WebApplication1\Webapplication1\obj\Debug\net8.0\WebApplication1.csproj.AssemblyReference.cache
 D:\Attractor\month#2\WebApplication1\Webapplication1\obj\Debug\net8.0\WebAppli.7D14BD69.Up2Date
+D:\Attractor\month#2\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json
