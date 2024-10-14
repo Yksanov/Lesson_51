@@ -26,11 +26,11 @@
                     <input asp-for="Price" type="text">
                 </label>
             </div>
-            <div class="form_row">
+            <div class="form-row">
                 <label for="">
-                    Количество камера
-                    <input asp-for="CameraCount" type="number">
+                    <input disabled type="hidden" value="@Model.CameraCount">
                 </label>
+                <input asp-for="CameraCount" type="hidden" value="@Model.Id">
             </div>
             <button class="btn btn-primary" type="submit">Update</button>
         </form>

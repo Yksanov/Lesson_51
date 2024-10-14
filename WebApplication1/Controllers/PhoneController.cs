@@ -59,15 +59,33 @@ public class PhoneController : Controller
     public IActionResult Edit(int id)
     {
         Phone p = _context.Phones.FirstOrDefault(x => x.Id == id);
-        return View(p);
+        if (p == null)
+        {
+            return NotFound($"Phone with this id: {id} not found");
+        }
+        else
+        {
+            return View(p);
+        }
     }
 
     [HttpPost]
     public IActionResult Edit(Phone phone)
     {
-        _context.Update(phone);
-        _context.SaveChanges();
-        return RedirectToAction("Index");
+        try
+        {
+            if (phone != null)
+            {
+                _context.Update(phone);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return View(phone);
     }
     //-------------------------------------------
     
