@@ -1,0 +1,38 @@
+@model Phone
+
+@{
+    ViewBag.Title = "Edit phone";
+}
+
+<h2>Edit phone</h2>
+<div class="row">
+    <div class="phone_add_form col-md-6">
+        <form asp-action="Edit" asp-controller="Phone" method="post">
+            <div class="form_row">
+                <label for="">
+                    Название
+                    <input asp-for="Name" type="text">
+                </label>
+            </div>
+            <div class="form_row">
+                <label for="">
+                    Компания
+                    <input asp-for="Company" type="text">
+                </label>
+            </div>
+            <div class="form_row">
+                <label for="">
+                    Стоимость
+                    <input asp-for="Price" type="text">
+                </label>
+            </div>
+            <div class="form_row">
+                <label for="">
+                    Количество камера
+                    <input asp-for="CameraCount" type="number">
+                </label>
+            </div>
+            <button class="btn btn-primary" type="submit">Update</button>
+        </form>
+    </div>
+</div>
