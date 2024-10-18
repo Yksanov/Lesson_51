@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers;
@@ -13,7 +14,11 @@ public class PhoneController : Controller
         _context = context;
         _environment = environment;
     }
-    
+
+    public IActionResult GetMessage()
+    {
+        return PartialView("_GetMessage");
+    }
     public IActionResult Index()
     {
         List<Phone> phones = _context.Phones.ToList();
@@ -100,7 +105,7 @@ public class PhoneController : Controller
         }
         return View(phone);
     }
-
+    //-------------------------------------------
     //Details
     [HttpGet]
     public IActionResult Details(int id)
@@ -108,5 +113,57 @@ public class PhoneController : Controller
         List<Phone> phones = _context.Phones.ToList();
         var findId = phones.FirstOrDefault(p => p.Id == id);
         return View(findId);
+    }
+
+    public async Task<IActionResult> Details2(int id)
+    {
+        Phone? phone = await _context.Phones.FirstOrDefaultAsync(p => p.Id == id);
+        if (phone != null)
+        {
+            return View(phone);
+        }
+
+        return NotFound();
+    }
+    //-------------------------------------------
+    //Delete
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        Phone? phone = await _context.Phones.FirstOrDefaultAsync(p => p.Id == id);
+        if (phone != null)
+        {
+            _context.Remove(phone);
+            await _context.SaveChangesAsync();
+        }
+
+        return RedirectToAction("Index");
+    }
+    //------------------------------------------
+    //Edit2
+
+    public async Task<IActionResult> Edit2(int id)
+    {
+        Phone? phone = await _context.Phones.FirstOrDefaultAsync(p => p.Id == id);
+        if (phone != null)
+        {
+            return View(phone);
+        }
+
+        return NotFound();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit2(Phone? phone)
+    {
+        if (phone != null)
+        {
+            _context.Update(phone);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+
+        }
+
+        return View(phone);
     }
 }

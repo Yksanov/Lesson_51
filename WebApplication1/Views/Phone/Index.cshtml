@@ -20,22 +20,27 @@
         </thead>
         <tbody>
         @foreach (var p in Model)
-    {
-        <tr>
-            <th scope="row">@p.Name</th>
-            <td>@p.Company</td>
-            <td>@p.Price</td>
-            <td>@p.CameraCount</td>
-            <td><a asp-action="Details" asp-route-id="@p.Id"><button class="btn btn-outline-danger">Details</button></a></td>
-            <td><a asp-action="Create" asp-controller="Order" asp-route-id="@p.Id"><button class="btn btn-secondary">Make Order</button></a></td>
-            <td><a asp-action="Edit" asp-controller="Phone" asp-route-id="@p.Id"><button class="btn btn-warning">Edit</button></a></td>
-            <td><a asp-action="Test" asp-controller="Phone" asp-route-company="@p.Company"><button class="btn btn-primary">Redirects</button></a></td>
-        </tr>
-    }
-    </tbody>
+        {
+            <tr>
+                <th scope="row"><a asp-action="Details2" asp-route-id="@p.Id">@p.Name</a>
+                <td>@p.Company</td>
+                <td>@p.Price</td>
+                <td>@p.CameraCount</td>
+                <td><a asp-action="Details" asp-route-id="@p.Id"><button class="btn btn-outline-success">Details</button></a></td>
+                <td><a asp-action="Create" asp-controller="Order" asp-route-id="@p.Id"><button class="btn btn-secondary">Make Order</button></a></td>
+                <td><a asp-action="Edit" asp-controller="Phone" asp-route-id="@p.Id"><button class="btn btn-warning">Edit</button></a></td>
+                <td><a asp-action="Test" asp-controller="Phone" asp-route-company="@p.Company"><button class="btn btn-primary">Redirects</button></a></td>
+                <td><a asp-action="Delete" asp-route-id="@p.Id"><button class="btn btn-danger">Delete</button></a></td>
+            </tr>
+        }
+        </tbody>
     </table>
 }
 else
 {
     <h3>Нету телефона пока!</h3>
+}
+
+@{
+    await Html.RenderPartialAsync("_GetMessage", new List<string>(){"1","2","3"});
 }

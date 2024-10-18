@@ -1,11 +1,11 @@
-@model List<Order>
+@model WebApplication1.ViewModels.PhonesOrdersViewModel
 
 @{
     ViewBag.Title = "All Orders";
 }
 
 <h2>All Orders</h2>
-@if (Model != null && Model.Count != 0)
+@if (Model != null && Model.Orders.Count != 0)
 {
     <table class="table">
         <thead>
@@ -17,11 +17,10 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (var p in Model)
+        @foreach (var p in Model.Orders)
         {
             <tr>
                 <th scope="row">@p.Name</th>
-                <td>@p.Name</td>
                 <td>@p.Address</td>
                 <td>@p.ContactPhone</td>
                 <td>@p.Phone.Name</td>
@@ -34,4 +33,13 @@
 else
 {
     <h3>Нету заказов пока!</h3>
+}
+
+@functions
+{
+    public void Hello()
+    {
+        List<Phone> p = Model.Phones;
+        Console.WriteLine("Hello World!");
+    }
 }

@@ -1,0 +1,12 @@
+@model Phone
+
+@{
+    ViewData["Title"] = $"{Model.Name}";
+}
+
+<div class="container">
+    <p>@Model.Name</p>
+    <p>@Model.Company</p>
+    <p>@Model.Price</p>
+    <p>@Model.CameraCount</p>
+</div>

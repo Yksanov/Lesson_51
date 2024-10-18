@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers;
 
@@ -15,8 +16,15 @@ public class OrderController : Controller
     // GET
     public IActionResult Index()
     {
-        List<Order> orders = _context.Orders.Include(o => o.Phone).ToList(); 
-        return View(orders);
+        List<Order> orders = _context.Orders.Include(o => o.Phone).ToList();
+        List<Phone> phones = _context.Phones.ToList();
+
+        PhonesOrdersViewModel vm = new PhonesOrdersViewModel()
+        {
+            Phones = phones,
+            Orders = orders
+        };
+        return View(vm);
     }
 
     //Edit
